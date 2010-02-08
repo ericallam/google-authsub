@@ -224,7 +224,7 @@ class GoogleAuthSub
     if method.superclass != Net::HTTPRequest
       raise AuthSubError, "method must be a Net::HTTPRequest subclass (GET POST PUT DELETE). #{method} received."
     end
-    request = method.new(url.path)
+    request = method.new(url.request_uri)
     request['Authorization'] = authorization_header(request, url)
     connection =  Net::HTTP.new(url.host, url.port)
     connection.use_ssl= (url.scheme == 'https')
